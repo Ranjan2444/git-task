@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+  config.vm.boot_timeout = 10000
+
+  # Define the VMs
+  config.vm.define "development" do |dev|
+    dev.vm.box = "ubuntu/focal64"
+    dev.vm.hostname = "development"
+    dev.vm.network "private_network", ip: "192.168.56.15"
+    dev.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+    end
+  end
+
+  config.vm.define "staging" do |staging|
+    staging.vm.box = "ubuntu/focal64"
+    staging.vm.hostname = "staging"
+    staging.vm.network "private_network", ip: "192.168.56.16"
+    staging.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+  end
+
+end
